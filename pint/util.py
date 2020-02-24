@@ -412,6 +412,10 @@ class UnitsContainer(Mapping):
             self._hash = hash(frozenset(self._d.items()))
         return self._hash
 
+    def __getstate__(self):
+        return {'_d': self._d, '_hash': self._hash}
+        
+    
     def __eq__(self, other):
         if isinstance(other, UnitsContainer):
             # UnitsContainer.__hash__(self) is not the same as hash(self); see
